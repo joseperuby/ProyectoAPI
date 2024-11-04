@@ -10,7 +10,7 @@ const empleado = require('./routes/empleado');
 //Middleweare
 const auth = require('./middleware/auth');
 const notFound = require('./middleware/notFound');
-const index = require('./middleware/index');
+const Windex = require('./middleware/welcome_index');
 
 ///////////////////////////////////
 
@@ -20,7 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 ///////////////////////////////////
 
-app.get("/", index);
+app.get("/", Windex);
 app.use("/user", user);
 app.use(auth);
 app.use("/empleados", empleado);
