@@ -2,6 +2,7 @@ const morgan = require('morgan');
 const express = require('express');
 const app = express();
 const user = require('./routes/user');
+const empleado = require('./routes/empleado');
 
 app.use(morgan('dev'));
 app.use(express.json());
@@ -11,7 +12,7 @@ app.get("/", (req, res, next) => {
     res.status(200).json({code: 1, message: "Bienvenido al sistema de Recursos Humanos"});
 })
 
-app.use("/empleados", empleados);
+app.use("/empleados", empleado);
 app.use("/user", user);
 
 app.use((req, res, next) => {
