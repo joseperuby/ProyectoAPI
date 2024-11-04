@@ -2,7 +2,7 @@ const express = require('express');
 const empleado = express.Router();
 const db = require('../config/database');
 
-empleado.post("/",  async (req, res, next)=>{
+/*empleado.post("/",  async (req, res, next)=>{
     const {nombre, apellidos, telefono, email, direccion} = req.body;
 
     if (nombre && apellidos && telefono && email && direccion) {
@@ -20,8 +20,26 @@ empleado.post("/",  async (req, res, next)=>{
         }
     }
     return res.status(400).json({ code: 400, message: "Campos incompletos" });
-});
+});*/
 
+empleado.post("/",  async (req, res, next)=>{
+    const {nombre, apellidos, telefono, email, direccion} = req.body;
+
+    if(nombre && apellidos && telefono && email && direccion)
+    {
+        let query = "INSERT INTO employees(nombre, apellidos, telefono, email, direccion)";
+        query += `VALUES('${nombre}', '${apellidos}', '${telefono}', '${email}', '${direccion}')`;
+
+        const rows = await db.query(query);
+        if(rows.affectedRows == 1)
+        {
+            return res.status(201).json({code: 201, message:"Empleado insertado correctamente"});
+        }
+
+        return res.status(500).json({code: 500, message:"Ocurrió un error"});
+    }
+    return res.status(500).json({code: 500 ,message:"Campos incompletos"});
+});
 
 empleado.delete("/:id([0-9]{1,3})", async (req, res , next) => {
     const query = `DELETE FROM employees WHERE idEmpleado=${req.params.id}`;
@@ -52,12 +70,10 @@ empleado.put("/:id([0-9]{1,3})", async (req, res , next) => {
         return res.status(500).json({code: 500 ,message:"Campos incompletos"});
 });
 
-
 empleado.get("/", async (req, res, next) => {
     const emp = await db.query("SELECT * FROM employees");
     return res.status(200).json({code: 200, message: emp});
 });
-
 
 empleado.get('/:name([A-Za-z]+)', async (req, res, next)=>{
     const name = req.params.name;
@@ -68,4 +84,5 @@ empleado.get('/:name([A-Za-z]+)', async (req, res, next)=>{
     return res.status(404).send({code: 404, message:"Empleado no encontrado"});
 
 });
+
 module.exports = empleado;
