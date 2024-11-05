@@ -11,9 +11,11 @@ const empleado = require('./routes/empleado');
 const auth = require('./middleware/auth');
 const notFound = require('./middleware/notFound');
 const Windex = require('./middleware/welcome_index');
+const cors = require('./middleware/cors');
 
 ///////////////////////////////////
 
+app.use(cors);
 app.use(morgan('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
