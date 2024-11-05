@@ -16,22 +16,14 @@ function init() {
     }
 }
 
-
-
-function loadEmployees(){
-    axios.get
-}
-
 function loadEmployees() {
-    axios.get(url + "/empleados", headers)
-    .then(function(res) {
+    axios.get(url + "/empleados", headers).then(function(res) {
         console.log(res);
         displayEmployees(res.data.message);
     }).catch(function(err){
         console.log(err);
     })
 }
-
 
 function displayEmployees(empl) {
     var body = document.querySelector("body");
