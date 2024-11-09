@@ -14,11 +14,11 @@ function login(){
     var pass = document.getElementById('input-password').value
 
     axios({
-        method:'post',
-        url:API_URL+'/user/login',
-        data:{
-            email: mail,
-            pass: pass
+        method: 'post',
+        url: API_URL + '/user/login',
+        data: {
+            user_mail: mail,     
+            user_password: pass
         }
     }).then(function(res){
         if(res.data.code === 200){

@@ -21,7 +21,7 @@ function regresar(){
 }
 
 function registrar(){
-    var nombres = document.getElementById('nombres').value
+    var nombre = document.getElementById('nombres').value
     var apellidos = document.getElementById('apellidos').value
     var email = document.getElementById('email').value
     var telefono = document.getElementById('telefono').value
@@ -32,7 +32,7 @@ function registrar(){
         url:API_URL+'/empleados',
         headers:headers.headers,
         data:{
-            nombres:nombres,
+            nombre:nombre,
             apellidos:apellidos,
             telefono:telefono,
             email:email,
