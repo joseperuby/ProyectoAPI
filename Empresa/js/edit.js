@@ -1,6 +1,6 @@
 window.onload = init;
 var headers = {};
-let id = 0;
+let idEmpleado = 0;
 const API_URL = 'http://localhost:3000';
 
 function init() {
@@ -11,7 +11,7 @@ function init() {
             }
         };
         let params = new URLSearchParams(document.location.search);
-        id = parseInt(params.get("id"));
+        idEmpleado = parseInt(params.get("idEmpleado"));
         loadDatos();
         document.querySelector('.mBoton').addEventListener('click', regresar);
         document.getElementById('button').addEventListener('click', modificar);
@@ -33,7 +33,7 @@ function modificar() {
 
     axios({
         method: 'PUT',
-        url: API_URL + '/empleados/' + id,
+        url: API_URL + '/empleados/' + idEmpleado,
         headers: headers.headers,
         data: {
             nombre: nombre,
@@ -52,7 +52,7 @@ function modificar() {
 }
 
 function loadDatos() {
-    axios.get(API_URL + "/empleados/" + id, headers)
+    axios.get(API_URL + "/empleados/" + idEmpleado, headers)
         .then(function (res) {
             displayDatos(res.data.message);
         }).catch(function (err) {

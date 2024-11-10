@@ -65,7 +65,7 @@ function displayEmpleados(emp){
                                         src="./images/editar.png"
                                         height="20"
                                         width="20"
-                                        onclick="window.location.href='edit.html?id=${emp[i].id}'"
+                                        onclick="window.location.href='edit.html?idEmpleado=${emp[i].idEmpleado}'"
                                     />
                                 </div>
                                 <div class="imagen">
@@ -73,7 +73,7 @@ function displayEmpleados(emp){
                                         src="./images/eliminar.png"
                                         height="20"
                                         width="20"
-                                        onclick="window.location.href='delete.html?id=${emp[i].id}'"
+                                        onclick="window.location.href='delete.html?idEmpleado=${emp[i].idEmpleado}'"
                                     />
                                 </div>
                             </div>`
